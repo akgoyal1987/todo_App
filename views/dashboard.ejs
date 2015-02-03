@@ -1,0 +1,79 @@
+
+<% include layout %>
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet"> 
+<div class="wrapper">
+        <h4>All Todos<span class="pull-right">Welcome : <span style="color: green; text-transform: capitalize;"><%=user.firstname%> <%=user.lastname%></span> | <a href="/logout">Logout</a></span></h4>       
+        
+        <div ng-app="todoApp" ng-controller="TodoController">
+           <table style="width:100%">
+            <tr>
+              <td>
+                <div class="pull-right filter-container">
+                    <label>Sort By :</label>
+                    <select ng-model="sort">
+                      <option value=""> -- select sort key --</option>
+                      <option value="title">Title</option>
+                      <option value="due_date"> Due_Date </option>
+                      <option value="priority"> Priority </option>
+                    </select>
+                </div>
+              </td>              
+            </tr>
+           </table>
+           <table class="table table-bordered table-hover table-condensed">            
+            <tr style="font-weight: bold">
+              <td style="width:20%">Title</td>
+              <td style="width:25%">Note</td>
+              <td style="width:15%">Due Date</td>
+              <td style="width:10%">Priority</td>
+              <td style="width:10%">Status</td>
+              <td style="width:20%">Action</td>
+            </tr>
+            <tr ng-repeat="todo in todos | orderBy:sort">
+              <td>
+                <span editable-text="todo.title" e-name="title" e-form="rowform" onbeforesave="validateData($data, 'Title')" e-required>
+                  {{ todo.title || "empty" }}
+                </span>
+              </td>
+              <td>
+                <span editable-text="todo.note" e-name="note" e-form="rowform" onbeforesave="validateData($data, 'Note')" e-required>
+                  {{ todo.note || "empty" }}
+                </span>
+              </td>
+              <td>
+                <span editable-date="todo.due_date" e-name="due_date" e-datepicker-popup="dd-MMMM-yyyy" onbeforesave="validateData($data, 'Due_Date')" e-form="rowform" e-requied>
+                  {{ (todo.due_date | date:"dd-MMMM-yyyy") || 'empty' }}
+                </span>
+              </td>
+              <td>
+                <span editable-number="todo.priority" e-name="priority"  onbeforesave="validateData($data, 'Priority')" e-form="rowform" e-requied>
+                  {{ todo.priority || "empty" }}
+                </span>
+              </td>
+              <td>
+                <span editable-checkbox="todo.completed" e-name="completed"  e-form="rowform" e-requied>
+                  {{ todo.completed && "Complete" || "Pending" }}
+                </span>
+              </td>
+              <td style="white-space: nowrap">
+                <!-- form -->
+                <form editable-form name="rowform" onbeforesave="saveTodo($data, todo._id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == todo">
+                  <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                    save
+                  </button>
+                  <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel();deleteNewTodo();" class="btn btn-default">
+                    cancel
+                  </button>
+                </form>
+                <div class="buttons" ng-show="!rowform.$visible">
+                  <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                  <button class="btn btn-danger" ng-click="removeTodo($index)">del</button>
+                </div>  
+              </td>
+            </tr>
+          </table>  
+          <button class="btn btn-default" ng-click="addTodo()">Add Todo</button>
+        </div>
+      </div>
+
+<% include footer %>
