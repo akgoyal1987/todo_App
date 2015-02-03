@@ -15,7 +15,7 @@ app.set('view engine', 'ejs');
 
 // make app to use mongoose
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/todoApp', function(err) {
+mongoose.connect('mongodb://akgoyal:herokutodo@ds039251.mongolab.com:39251/todos', function(err) {
     if(err) {
         console.log('connection error', err);
     } else {
