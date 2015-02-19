@@ -1,28 +1,28 @@
 {
-  "name": "angular-todo-app",
-  "version": "0.0.1",
-  "private": true,
-  "engines": {
-    "node": "0.10.x"
-  },
-  "scripts": {
-    "start": "node app"
-  },
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "~1.10.2",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "~1.3.3",
-    "debug": "~2.1.1",
-    "ejs": "^2.2.3",
-    "express": "~4.11.1",
-    "express-session": "^1.10.2",
-    "flash": "^1.1.0",
-    "jade": "~1.9.1",
-    "mongoose": "^3.8.22",
-    "morgan": "~1.5.1",
-    "passport": "^0.2.1",
-    "passport-local": "^1.0.0",
-    "serve-favicon": "~2.2.0"
-  }
+	"name": "angular-todo-app",
+	"version": "0.0.1",
+	"private": true,
+	"engines": {
+		"node": "0.10.x"
+	},
+	"scripts": {
+		"start": "node ./bin/www"
+	},
+	"dependencies": {
+		"bcrypt-nodejs": "0.0.3",
+		"body-parser": "~1.10.2",
+		"connect-flash": "^0.1.1",
+		"cookie-parser": "~1.3.3",
+		"debug": "~2.1.1",
+		"ejs": "^2.2.3",
+		"express": "~4.11.1",
+		"express-session": "^1.10.2",
+		"flash": "^1.1.0",
+		"jade": "~1.9.1",
+		"mongoose": "^3.8.22",
+		"morgan": "~1.5.1",
+		"passport": "^0.2.1",
+		"passport-local": "^1.0.0",
+		"serve-favicon": "~2.2.0"
+	}
 }
